@@ -1,30 +1,30 @@
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const getResend = () => new Resend(process.env.RESEND_API_KEY);
 
 interface SendDownloadEmailParams {
-    to: string;
-    customerName: string;
-    downloadUrl: string;
-    expiresAt: Date;
+  to: string;
+  customerName: string;
+  downloadUrl: string;
+  expiresAt: Date;
 }
 
 export async function sendDownloadEmail({
-    to,
-    customerName,
-    downloadUrl,
-    expiresAt,
+  to,
+  customerName,
+  downloadUrl,
+  expiresAt,
 }: SendDownloadEmailParams) {
-    const formattedExpiry = new Intl.DateTimeFormat('en-US', {
-        dateStyle: 'full',
-        timeStyle: 'short',
-    }).format(expiresAt);
+  const formattedExpiry = new Intl.DateTimeFormat('en-US', {
+    dateStyle: 'full',
+    timeStyle: 'short',
+  }).format(expiresAt);
 
-    const { data, error } = await resend.emails.send({
-        from: 'APEX Theme <noreply@yourdomain.com>', // Update with your verified domain
-        to: [to],
-        subject: '🎉 Your APEX Theme is Ready!',
-        html: `
+  const { data, error } = await getResend().emails.send({
+    from: 'APEX Theme <noreply@yourdomain.com>', // Update with your verified domain
+    to: [to],
+    subject: '🎉 Your APEX Theme is Ready!',
+    html: `
 <!DOCTYPE html>
 <html>
 <head>
@@ -93,12 +93,12 @@ export async function sendDownloadEmail({
 </body>
 </html>
     `,
-    });
+  });
 
-    if (error) {
-        console.error('Failed to send email:', error);
-        throw new Error(`Failed to send email: ${error.message}`);
-    }
+  if (error) {
+    console.error('Failed to send email:', error);
+    throw new Error(`Failed to send email: ${error.message}`);
+  }
 
-    return data;
+  return data;
 }
