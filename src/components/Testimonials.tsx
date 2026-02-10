@@ -35,22 +35,21 @@ const containerVariants = {
     visible: {
         opacity: 1,
         transition: {
-            staggerChildren: 0.15,
-            delayChildren: 0.2,
+            staggerChildren: 0.12,
+            delayChildren: 0.1,
         },
     },
 };
 
 const cardVariants = {
-    hidden: { opacity: 0, y: 50, rotateY: -10 },
+    hidden: { opacity: 0, y: 30 },
     visible: {
         opacity: 1,
         y: 0,
-        rotateY: 0,
         transition: {
             type: "spring" as const,
-            stiffness: 80,
-            damping: 12,
+            stiffness: 100,
+            damping: 14,
         }
     },
 };
@@ -58,17 +57,9 @@ const cardVariants = {
 export default function Testimonials() {
     return (
         <section className="section bg-[#141416] relative overflow-hidden">
-            {/* Floating decorations */}
-            <motion.div
-                animate={{ y: [-30, 30, -30], rotate: [0, 180, 360] }}
-                transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-                className="absolute top-20 left-10 w-20 h-20 border border-[#D4AF37]/10 rounded-full"
-            />
-            <motion.div
-                animate={{ y: [20, -20, 20], rotate: [360, 180, 0] }}
-                transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-                className="absolute bottom-20 right-20 w-32 h-32 border border-white/5 rounded-full"
-            />
+            {/* Static decorations — no infinite animation */}
+            <div className="absolute top-20 left-10 w-20 h-20 border border-[#D4AF37]/10 rounded-full" />
+            <div className="absolute bottom-20 right-20 w-32 h-32 border border-white/5 rounded-full" />
 
             <div className="container mx-auto relative z-10">
                 {/* Section Header */}
@@ -76,18 +67,12 @@ export default function Testimonials() {
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.7 }}
+                    transition={{ duration: 0.5 }}
                     className="text-center mb-16"
                 >
-                    <motion.span
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5 }}
-                        className="inline-block px-4 py-1.5 rounded-full bg-[#D4AF37]/10 text-[#D4AF37] text-sm font-medium mb-4"
-                    >
+                    <span className="inline-block px-4 py-1.5 rounded-full bg-[#D4AF37]/10 text-[#D4AF37] text-sm font-medium mb-4">
                         Customer Stories
-                    </motion.span>
+                    </span>
                     <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">
                         Loved by{" "}
                         <span className="text-gradient-gold">Brand Owners</span>
@@ -105,43 +90,25 @@ export default function Testimonials() {
                     viewport={{ once: true, margin: "-50px" }}
                     className="grid grid-cols-1 md:grid-cols-3 gap-6"
                 >
-                    {testimonials.map((testimonial, index) => (
+                    {testimonials.map((testimonial) => (
                         <motion.div
                             key={testimonial.name}
                             variants={cardVariants}
-                            whileHover={{
-                                y: -10,
-                                scale: 1.02,
-                                transition: { type: "spring", stiffness: 300 }
-                            }}
-                            className="glass-card p-6 relative group"
+                            className="glass-card p-6 relative group hover:-translate-y-2 hover:scale-[1.02] transition-transform duration-300"
                         >
                             {/* Quote icon */}
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.3 + index * 0.1, type: "spring" }}
-                                className="absolute -top-3 -right-3 w-10 h-10 bg-[#D4AF37]/10 rounded-full flex items-center justify-center group-hover:bg-[#D4AF37]/20 transition-colors"
-                            >
+                            <div className="absolute -top-3 -right-3 w-10 h-10 bg-[#D4AF37]/10 rounded-full flex items-center justify-center group-hover:bg-[#D4AF37]/20 transition-colors">
                                 <Quote size={16} className="text-[#D4AF37]" />
-                            </motion.div>
+                            </div>
 
                             {/* Stars */}
                             <div className="flex gap-1 mb-4">
                                 {[...Array(testimonial.rating)].map((_, i) => (
-                                    <motion.div
+                                    <Star
                                         key={i}
-                                        initial={{ opacity: 0, scale: 0, rotate: -180 }}
-                                        whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ delay: 0.4 + i * 0.1, type: "spring" }}
-                                    >
-                                        <Star
-                                            size={16}
-                                            className="fill-[#D4AF37] text-[#D4AF37]"
-                                        />
-                                    </motion.div>
+                                        size={16}
+                                        className="fill-[#D4AF37] text-[#D4AF37]"
+                                    />
                                 ))}
                             </div>
 
@@ -152,12 +119,9 @@ export default function Testimonials() {
 
                             {/* Author */}
                             <div className="flex items-center gap-3">
-                                <motion.div
-                                    whileHover={{ scale: 1.1, rotate: 10 }}
-                                    className="text-3xl"
-                                >
+                                <div className="text-3xl">
                                     {testimonial.image}
-                                </motion.div>
+                                </div>
                                 <div>
                                     <div className="font-semibold text-white">
                                         {testimonial.name}
@@ -174,16 +138,12 @@ export default function Testimonials() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: 0.5 }}
+                    transition={{ delay: 0.3, duration: 0.5 }}
                     className="text-center mt-12"
                 >
-                    <motion.p
-                        animate={{ opacity: [0.5, 1, 0.5] }}
-                        transition={{ duration: 3, repeat: Infinity }}
-                        className="text-white/40 text-sm"
-                    >
+                    <p className="text-white/40 text-sm">
                         ⭐ Join 500+ happy store owners using APEX
-                    </motion.p>
+                    </p>
                 </motion.div>
             </div>
         </section>

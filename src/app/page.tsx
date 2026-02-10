@@ -1,11 +1,26 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import Features from "@/components/Features";
-import Demo from "@/components/Demo";
-import Pricing from "@/components/Pricing";
-import Testimonials from "@/components/Testimonials";
-import FAQ from "@/components/FAQ";
-import Footer from "@/components/Footer";
+import dynamic from "next/dynamic";
+
+// Lazy load below-the-fold components
+const Features = dynamic(() => import("@/components/Features"), {
+  loading: () => <div className="min-h-[50vh]" />,
+});
+const Demo = dynamic(() => import("@/components/Demo"), {
+  loading: () => <div className="min-h-[50vh]" />,
+});
+const Testimonials = dynamic(() => import("@/components/Testimonials"), {
+  loading: () => <div className="min-h-[50vh]" />,
+});
+const Pricing = dynamic(() => import("@/components/Pricing"), {
+  loading: () => <div className="min-h-[50vh]" />,
+});
+const FAQ = dynamic(() => import("@/components/FAQ"), {
+  loading: () => <div className="min-h-[50vh]" />,
+});
+const Footer = dynamic(() => import("@/components/Footer"), {
+  loading: () => <div className="min-h-[20vh]" />,
+});
 
 export default function Home() {
   return (

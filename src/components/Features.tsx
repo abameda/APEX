@@ -84,26 +84,21 @@ const containerVariants = {
     visible: {
         opacity: 1,
         transition: {
-            staggerChildren: 0.08,
-            delayChildren: 0.2,
+            staggerChildren: 0.06,
+            delayChildren: 0.1,
         },
     },
 };
 
 const cardVariants = {
-    hidden: {
-        opacity: 0,
-        y: 40,
-        scale: 0.95,
-    },
+    hidden: { opacity: 0, y: 30 },
     visible: {
         opacity: 1,
         y: 0,
-        scale: 1,
         transition: {
             type: "spring" as const,
-            stiffness: 100,
-            damping: 12,
+            stiffness: 120,
+            damping: 14,
         },
     },
 };
@@ -111,36 +106,8 @@ const cardVariants = {
 export default function Features() {
     return (
         <section id="features" className="section bg-[#0A0A0B] relative overflow-hidden">
-            {/* Animated background */}
-            <motion.div
-                animate={{
-                    scale: [1, 1.2, 1],
-                    opacity: [0.1, 0.15, 0.1],
-                }}
-                transition={{
-                    duration: 8,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                }}
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#D4AF37]/10 rounded-full blur-[200px]"
-            />
-
-            {/* Floating particles */}
-            <motion.div
-                animate={{ y: [-20, 20, -20], x: [-10, 10, -10] }}
-                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-20 left-20 w-2 h-2 bg-[#D4AF37]/30 rounded-full"
-            />
-            <motion.div
-                animate={{ y: [20, -20, 20], x: [10, -10, 10] }}
-                transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute bottom-40 right-32 w-3 h-3 bg-[#D4AF37]/20 rounded-full"
-            />
-            <motion.div
-                animate={{ y: [-15, 15, -15] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-1/3 right-20 w-1.5 h-1.5 bg-white/20 rounded-full"
-            />
+            {/* Static background glow — no JS animation */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#D4AF37]/10 rounded-full blur-[120px] opacity-[0.12]" />
 
             <div className="container mx-auto relative z-10">
                 {/* Section Header */}
@@ -148,18 +115,12 @@ export default function Features() {
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.7 }}
+                    transition={{ duration: 0.5 }}
                     className="text-center mb-16"
                 >
-                    <motion.span
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5 }}
-                        className="inline-block px-4 py-1.5 rounded-full bg-[#D4AF37]/10 text-[#D4AF37] text-sm font-medium mb-4"
-                    >
+                    <span className="inline-block px-4 py-1.5 rounded-full bg-[#D4AF37]/10 text-[#D4AF37] text-sm font-medium mb-4">
                         Premium Features
-                    </motion.span>
+                    </span>
                     <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">
                         Everything You Need to{" "}
                         <span className="text-gradient-gold">Succeed</span>
@@ -182,20 +143,11 @@ export default function Features() {
                         <motion.div
                             key={feature.title}
                             variants={cardVariants}
-                            whileHover={{
-                                y: -8,
-                                scale: 1.02,
-                                transition: { type: "spring", stiffness: 400, damping: 17 }
-                            }}
-                            className="group glass-card p-6 cursor-pointer"
+                            className="group glass-card p-6 cursor-pointer hover:-translate-y-2 hover:scale-[1.02] transition-transform duration-300"
                         >
-                            <motion.div
-                                whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}
-                                transition={{ duration: 0.4 }}
-                                className="w-12 h-12 rounded-xl bg-[#D4AF37]/10 flex items-center justify-center mb-4 group-hover:bg-[#D4AF37]/20 transition-colors"
-                            >
+                            <div className="w-12 h-12 rounded-xl bg-[#D4AF37]/10 flex items-center justify-center mb-4 group-hover:bg-[#D4AF37]/20 transition-colors">
                                 <feature.icon className="w-6 h-6 text-[#D4AF37]" />
-                            </motion.div>
+                            </div>
                             <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-[#D4AF37] transition-colors">
                                 {feature.title}
                             </h3>
