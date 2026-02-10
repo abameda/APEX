@@ -76,7 +76,7 @@ export default function Hero() {
                         />
                     </a>
                     <a
-                        href="https://apexeg.com"
+                        href="https://doseeg.com"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="btn-secondary group"

@@ -2,17 +2,13 @@
 
 import { motion } from "framer-motion";
 import {
-    Palette,
-    Zap,
     Search,
     ShoppingCart,
     Heart,
     Menu,
     Smartphone,
     Moon,
-    Globe,
     Layers,
-    Image,
     Type,
     Sparkles,
     Lock,
@@ -182,7 +178,7 @@ export default function Features() {
                     viewport={{ once: true, margin: "-50px" }}
                     className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
                 >
-                    {features.map((feature, index) => (
+                    {features.map((feature) => (
                         <motion.div
                             key={feature.title}
                             variants={cardVariants}

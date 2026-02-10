@@ -12,9 +12,6 @@ import {
     Building,
     CheckCircle,
     Loader2,
-    Smartphone,
-    CreditCard,
-    Wallet,
     Copy,
     Check,
 } from "lucide-react";
@@ -185,8 +182,8 @@ export default function CheckoutPage() {
                                         whileHover={{ scale: 1.02 }}
                                         whileTap={{ scale: 0.98 }}
                                         className={`w-full p-6 rounded-xl border-2 transition-all text-left ${selectedMethod === method.method
-                                                ? "border-[#D4AF37] bg-[#D4AF37]/10"
-                                                : "border-white/10 bg-white/5 hover:border-white/20"
+                                            ? "border-[#D4AF37] bg-[#D4AF37]/10"
+                                            : "border-white/10 bg-white/5 hover:border-white/20"
                                             }`}
                                     >
                                         <div className="flex items-center gap-4">
@@ -235,8 +232,8 @@ export default function CheckoutPage() {
                                 whileHover={{ scale: selectedMethod ? 1.02 : 1 }}
                                 whileTap={{ scale: selectedMethod ? 0.98 : 1 }}
                                 className={`w-full mt-8 py-4 rounded-xl font-bold text-lg transition-all ${selectedMethod
-                                        ? "bg-gradient-to-r from-[#D4AF37] to-[#B8860B] text-[#0A0A0B] cursor-pointer"
-                                        : "bg-white/10 text-white/40 cursor-not-allowed"
+                                    ? "bg-gradient-to-r from-[#D4AF37] to-[#B8860B] text-[#0A0A0B] cursor-pointer"
+                                    : "bg-white/10 text-white/40 cursor-not-allowed"
                                     }`}
                             >
                                 I&apos;ve Made the Payment →
@@ -273,12 +270,13 @@ export default function CheckoutPage() {
                                     </label>
                                     <label
                                         className={`flex flex-col items-center justify-center w-full h-48 border-2 border-dashed rounded-xl cursor-pointer transition-all ${screenshotPreview
-                                                ? "border-[#D4AF37] bg-[#D4AF37]/5"
-                                                : "border-white/20 hover:border-white/40 bg-white/5"
+                                            ? "border-[#D4AF37] bg-[#D4AF37]/5"
+                                            : "border-white/20 hover:border-white/40 bg-white/5"
                                             }`}
                                     >
                                         {screenshotPreview ? (
                                             <div className="relative w-full h-full">
+                                                {/* eslint-disable-next-line @next/next/no-img-element */}
                                                 <img
                                                     src={screenshotPreview}
                                                     alt="Screenshot preview"
@@ -388,8 +386,8 @@ export default function CheckoutPage() {
                                     whileHover={{ scale: !isSubmitting ? 1.02 : 1 }}
                                     whileTap={{ scale: !isSubmitting ? 0.98 : 1 }}
                                     className={`w-full py-4 rounded-xl font-bold text-lg transition-all flex items-center justify-center gap-2 ${!isSubmitting && screenshot
-                                            ? "bg-gradient-to-r from-[#D4AF37] to-[#B8860B] text-[#0A0A0B]"
-                                            : "bg-white/10 text-white/40 cursor-not-allowed"
+                                        ? "bg-gradient-to-r from-[#D4AF37] to-[#B8860B] text-[#0A0A0B]"
+                                        : "bg-white/10 text-white/40 cursor-not-allowed"
                                         }`}
                                 >
                                     {isSubmitting ? (

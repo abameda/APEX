@@ -66,7 +66,7 @@ export default function Footer() {
                             </motion.span>
                         </motion.a>
                         <motion.a
-                            href="https://apexeg.com"
+                            href="https://doseeg.com"
                             target="_blank"
                             rel="noopener noreferrer"
                             whileHover={{ scale: 1.05 }}

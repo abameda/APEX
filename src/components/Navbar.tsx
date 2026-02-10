@@ -63,7 +63,7 @@ export default function Navbar() {
                     {/* CTA Buttons */}
                     <div className="hidden md:flex items-center gap-3">
                         <a
-                            href="https://apexeg.com"
+                            href="https://doseeg.com"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="px-4 py-2 text-sm text-white/80 hover:text-white border border-white/20 hover:border-white/40 rounded-full transition-all"
@@ -122,7 +122,7 @@ export default function Navbar() {
                             </a>
                             <div className="flex flex-col gap-3 pt-4">
                                 <a
-                                    href="https://apexeg.com"
+                                    href="https://doseeg.com"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="px-4 py-2 text-sm text-center text-white/80 border border-white/20 rounded-full"

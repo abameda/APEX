@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getServiceSupabase } from "@/lib/supabase";
 import { sendDownloadEmail } from "@/lib/email";
-import { put, list } from "@vercel/blob";
+import { put } from "@vercel/blob";
 import { v4 as uuidv4 } from "uuid";
 import JSZip from "jszip";
 

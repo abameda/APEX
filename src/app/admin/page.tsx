@@ -9,7 +9,6 @@ import {
     CheckCircle,
     XCircle,
     Clock,
-    Download,
     Mail,
     Phone,
     Building,
@@ -17,7 +16,6 @@ import {
     RefreshCw,
     ExternalLink,
     Search,
-    Filter,
 } from "lucide-react";
 import type { Order, OrderStatus } from "@/types/order";
 
@@ -58,6 +56,7 @@ export default function AdminPage() {
         if (isLoggedIn) {
             fetchOrders();
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isLoggedIn]);
 
     const handleLogin = (e: React.FormEvent) => {
@@ -261,8 +260,8 @@ export default function AdminPage() {
                                 key={status}
                                 onClick={() => setStatusFilter(status)}
                                 className={`px-4 py-2 rounded-xl font-medium transition-all ${statusFilter === status
-                                        ? "bg-[#D4AF37] text-[#0A0A0B]"
-                                        : "bg-white/5 text-white/60 hover:bg-white/10"
+                                    ? "bg-[#D4AF37] text-[#0A0A0B]"
+                                    : "bg-white/5 text-white/60 hover:bg-white/10"
                                     }`}
                             >
                                 {status.charAt(0).toUpperCase() + status.slice(1)}
@@ -442,6 +441,7 @@ export default function AdminPage() {
                                         rel="noopener noreferrer"
                                         className="block relative group"
                                     >
+                                        {/* eslint-disable-next-line @next/next/no-img-element */}
                                         <img
                                             src={selectedOrder.screenshot_url}
                                             alt="Payment screenshot"

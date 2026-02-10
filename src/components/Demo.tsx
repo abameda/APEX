@@ -82,7 +82,7 @@ export default function Demo() {
                     className="relative max-w-5xl mx-auto"
                 >
                     <motion.a
-                        href="https://apexeg.com"
+                        href="https://doseeg.com"
                         target="_blank"
                         rel="noopener noreferrer"
                         whileHover={{ scale: 1.01, y: -5 }}
@@ -104,7 +104,7 @@ export default function Demo() {
                                     whileHover={{ scale: 1.05 }}
                                     className="text-xs text-white/50 bg-white/5 px-4 py-1 rounded-full group-hover:bg-white/10 group-hover:text-white/70 transition-all flex items-center gap-2"
                                 >
-                                    apexeg.com
+                                    doseeg.com
                                     <ExternalLink size={10} className="opacity-0 group-hover:opacity-100 transition-opacity" />
                                 </motion.span>
                             </div>
