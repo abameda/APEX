@@ -218,6 +218,7 @@ p {
   background: radial-gradient(circle, rgba(202, 138, 4, 0.1) 0%, transparent 70%);
   opacity: 0;
   transition: opacity var(--transition-slow);
+  pointer-events: none;
 }
 
 .glass-card-gold:hover::before {
