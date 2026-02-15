@@ -21,7 +21,8 @@ export async function sendDownloadEmail({
   }).format(expiresAt);
 
   const { data, error } = await getResend().emails.send({
-    from: 'APEX Theme <noreply@yourdomain.com>', // Update with your verified domain
+    from: 'APEX Theme <onboarding@resend.dev>', // Using Resend test domain for reliable delivery
+    replyTo: 'abdelhmeed.mohsen@gmail.com', // Replies go to your Gmail
     to: [to],
     subject: '🎉 Your APEX Theme is Ready!',
     html: `
@@ -81,7 +82,7 @@ export async function sendDownloadEmail({
     <!-- Support -->
     <div style="text-align: center; padding: 30px 0; border-top: 1px solid rgba(255,255,255,0.1);">
       <p style="color: #666; margin: 0 0 15px 0;">Need help? We're here for you!</p>
-      <a href="mailto:support@yourdomain.com" style="color: #D4AF37; text-decoration: none;">support@yourdomain.com</a>
+      <a href="mailto:abdelhmeed.mohsen@gmail.com" style="color: #D4AF37; text-decoration: none;">abdelhmeed.mohsen@gmail.com</a>
     </div>
     
     <!-- Footer -->
