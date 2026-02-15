@@ -169,31 +169,31 @@ export default function CheckoutPage() {
                             exit={{ opacity: 0, x: -20 }}
                             className="glass-card-gold p-8"
                         >
-                            <h1 className="text-3xl font-bold text-white mb-2">Choose Payment Method</h1>
-                            <p className="text-white/60 mb-8">
+                            <h1 className="!text-2xl md:!text-3xl font-bold text-white mb-2">Choose Payment Method</h1>
+                            <p className="text-sm md:text-base text-white/60 mb-6">
                                 Select how you&apos;d like to pay <span className="text-[#D4AF37] font-bold">10,000 EGP</span> for the APEX Theme
                             </p>
 
-                            <div className="space-y-4">
+                            <div className="space-y-3">
                                 {paymentMethods.map((method) => (
                                     <motion.button
                                         key={method.method}
                                         onClick={() => setSelectedMethod(method.method)}
-                                        whileHover={{ scale: 1.02 }}
-                                        whileTap={{ scale: 0.98 }}
-                                        className={`w-full p-6 rounded-xl border-2 transition-all text-left ${selectedMethod === method.method
+                                        whileHover={{ scale: 1.01 }}
+                                        whileTap={{ scale: 0.99 }}
+                                        className={`w-full p-4 rounded-xl border-2 transition-all text-left cursor-pointer ${selectedMethod === method.method
                                             ? "border-[#D4AF37] bg-[#D4AF37]/10"
                                             : "border-white/10 bg-white/5 hover:border-white/20"
                                             }`}
                                     >
-                                        <div className="flex items-center gap-4">
-                                            <span className="text-3xl">{method.icon}</span>
+                                        <div className="flex items-center gap-3">
+                                            <span className="text-2xl">{method.icon}</span>
                                             <div className="flex-1">
-                                                <h3 className="text-lg font-bold text-white">{method.label}</h3>
-                                                <p className="text-white/60 text-sm">{method.instructions}</p>
+                                                <h3 className="!text-base font-bold text-white" style={{ fontSize: '1rem' }}>{method.label}</h3>
+                                                <p className="text-white/60 !text-xs" style={{ fontSize: '0.75rem' }}>{method.instructions}</p>
                                             </div>
                                             {selectedMethod === method.method && (
-                                                <CheckCircle className="text-[#D4AF37]" size={24} />
+                                                <CheckCircle className="text-[#D4AF37]" size={22} />
                                             )}
                                         </div>
                                     </motion.button>
@@ -231,7 +231,7 @@ export default function CheckoutPage() {
                                 disabled={!selectedMethod}
                                 whileHover={{ scale: selectedMethod ? 1.02 : 1 }}
                                 whileTap={{ scale: selectedMethod ? 0.98 : 1 }}
-                                className={`w-full mt-8 py-4 rounded-xl font-bold text-lg transition-all ${selectedMethod
+                                className={`w-full mt-6 py-3 rounded-xl font-bold text-base transition-all ${selectedMethod
                                     ? "bg-gradient-to-r from-[#D4AF37] to-[#B8860B] text-[#0A0A0B] cursor-pointer"
                                     : "bg-white/10 text-white/40 cursor-not-allowed"
                                     }`}
@@ -257,8 +257,8 @@ export default function CheckoutPage() {
                                 <ArrowLeft size={16} /> Back
                             </button>
 
-                            <h1 className="text-3xl font-bold text-white mb-2">Complete Your Order</h1>
-                            <p className="text-white/60 mb-8">
+                            <h1 className="!text-2xl md:!text-3xl font-bold text-white mb-2">Complete Your Order</h1>
+                            <p className="text-sm md:text-base text-white/60 mb-6">
                                 Upload your payment screenshot and enter your details
                             </p>
 
@@ -420,7 +420,7 @@ export default function CheckoutPage() {
                                 <CheckCircle className="text-green-400" size={48} />
                             </motion.div>
 
-                            <h1 className="text-3xl font-bold text-white mb-4">Order Submitted! 🎉</h1>
+                            <h1 className="!text-2xl md:!text-3xl font-bold text-white mb-4">Order Submitted! 🎉</h1>
 
                             <p className="text-white/60 mb-8 max-w-md mx-auto">
                                 We&apos;ve received your order and payment screenshot. Our team will verify
