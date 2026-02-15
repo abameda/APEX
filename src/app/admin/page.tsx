@@ -379,131 +379,183 @@ export default function AdminPage() {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
-                            className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4"
+                            className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4"
                             onClick={() => setSelectedOrder(null)}
                         >
                             <motion.div
-                                initial={{ scale: 0.9, opacity: 0 }}
-                                animate={{ scale: 1, opacity: 1 }}
-                                exit={{ scale: 0.9, opacity: 0 }}
+                                initial={{ scale: 0.95, opacity: 0, y: 20 }}
+                                animate={{ scale: 1, opacity: 1, y: 0 }}
+                                exit={{ scale: 0.95, opacity: 0, y: 20 }}
+                                transition={{ type: "spring", damping: 25, stiffness: 300 }}
                                 onClick={(e) => e.stopPropagation()}
-                                className="glass-card-gold w-full max-w-2xl max-h-[90vh] overflow-y-auto p-6"
+                                className="bg-[#141416] border border-white/10 rounded-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden shadow-2xl"
                             >
-                                <div className="flex items-start justify-between mb-6">
-                                    <div>
-                                        <h2 className="text-2xl font-bold text-white">Order Details</h2>
-                                        <p className="text-white/60 text-sm mt-1">ID: {selectedOrder.id}</p>
+                                {/* Header */}
+                                <div className="bg-[#141416] border-b border-white/10 px-6 py-4 flex items-center justify-between">
+                                    <div className="flex items-center gap-3">
+                                        <h2 className="text-xl font-bold text-white">Order Details</h2>
+                                        <span
+                                            className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium ${statusColors[selectedOrder.status].bg} ${statusColors[selectedOrder.status].text}`}
+                                        >
+                                            {statusColors[selectedOrder.status].icon}
+                                            {selectedOrder.status.charAt(0).toUpperCase() + selectedOrder.status.slice(1)}
+                                        </span>
                                     </div>
-                                    <span
-                                        className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm ${statusColors[selectedOrder.status].bg
-                                            } ${statusColors[selectedOrder.status].text}`}
+                                    <button
+                                        onClick={() => setSelectedOrder(null)}
+                                        className="p-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors text-white/60 hover:text-white"
                                     >
-                                        {statusColors[selectedOrder.status].icon}
-                                        {selectedOrder.status.charAt(0).toUpperCase() + selectedOrder.status.slice(1)}
-                                    </span>
+                                        <XCircle size={20} />
+                                    </button>
                                 </div>
 
-                                {/* Customer Info */}
-                                <div className="space-y-4 mb-6">
-                                    <div className="flex items-center gap-3 p-4 bg-white/5 rounded-xl">
-                                        <Mail className="text-[#D4AF37]" size={20} />
-                                        <div>
-                                            <p className="text-white/60 text-sm">Email</p>
-                                            <p className="text-white">{selectedOrder.email}</p>
-                                        </div>
-                                    </div>
-                                    <div className="grid md:grid-cols-2 gap-4">
-                                        <div className="flex items-center gap-3 p-4 bg-white/5 rounded-xl">
-                                            <Phone className="text-[#D4AF37]" size={20} />
+                                {/* Two-Column Content */}
+                                <div className="overflow-y-auto max-h-[calc(90vh-72px)]">
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-6 p-6">
+                                        {/* Left Column — Customer & Order Info */}
+                                        <div className="space-y-5">
+                                            {/* Order ID */}
+                                            <p className="text-white/40 text-xs font-mono break-all">ID: {selectedOrder.id}</p>
+
+                                            {/* Customer Info */}
                                             <div>
-                                                <p className="text-white/60 text-sm">Phone</p>
-                                                <p className="text-white">{selectedOrder.phone}</p>
-                                            </div>
-                                        </div>
-                                        {selectedOrder.business_name && (
-                                            <div className="flex items-center gap-3 p-4 bg-white/5 rounded-xl">
-                                                <Building className="text-[#D4AF37]" size={20} />
-                                                <div>
-                                                    <p className="text-white/60 text-sm">Business</p>
-                                                    <p className="text-white">{selectedOrder.business_name}</p>
+                                                <h3 className="text-xs font-semibold text-white/50 uppercase tracking-wider mb-3">Customer Information</h3>
+                                                <div className="bg-white/5 rounded-xl border border-white/5 divide-y divide-white/5">
+                                                    <div className="flex items-center gap-3 px-4 py-3">
+                                                        <div className="w-8 h-8 rounded-lg bg-[#D4AF37]/10 flex items-center justify-center flex-shrink-0">
+                                                            <Building className="text-[#D4AF37]" size={14} />
+                                                        </div>
+                                                        <div className="min-w-0 flex-1">
+                                                            <p className="text-white/40 text-[11px] uppercase tracking-wide">Name</p>
+                                                            <p className="text-white text-sm font-medium truncate">{selectedOrder.name}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div className="flex items-center gap-3 px-4 py-3">
+                                                        <div className="w-8 h-8 rounded-lg bg-[#D4AF37]/10 flex items-center justify-center flex-shrink-0">
+                                                            <Mail className="text-[#D4AF37]" size={14} />
+                                                        </div>
+                                                        <div className="min-w-0 flex-1">
+                                                            <p className="text-white/40 text-[11px] uppercase tracking-wide">Email</p>
+                                                            <p className="text-white text-sm truncate">{selectedOrder.email}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div className="flex items-center gap-3 px-4 py-3">
+                                                        <div className="w-8 h-8 rounded-lg bg-[#D4AF37]/10 flex items-center justify-center flex-shrink-0">
+                                                            <Phone className="text-[#D4AF37]" size={14} />
+                                                        </div>
+                                                        <div className="min-w-0 flex-1">
+                                                            <p className="text-white/40 text-[11px] uppercase tracking-wide">Phone</p>
+                                                            <p className="text-white text-sm">{selectedOrder.phone}</p>
+                                                        </div>
+                                                    </div>
+                                                    {selectedOrder.business_name && (
+                                                        <div className="flex items-center gap-3 px-4 py-3">
+                                                            <div className="w-8 h-8 rounded-lg bg-[#D4AF37]/10 flex items-center justify-center flex-shrink-0">
+                                                                <Building className="text-[#D4AF37]" size={14} />
+                                                            </div>
+                                                            <div className="min-w-0 flex-1">
+                                                                <p className="text-white/40 text-[11px] uppercase tracking-wide">Business</p>
+                                                                <p className="text-white text-sm truncate">{selectedOrder.business_name}</p>
+                                                            </div>
+                                                        </div>
+                                                    )}
                                                 </div>
                                             </div>
-                                        )}
-                                    </div>
-                                </div>
 
-                                {/* Payment Screenshot */}
-                                <div className="mb-6">
-                                    <h3 className="text-white/80 font-medium mb-3">Payment Screenshot</h3>
-                                    <a
-                                        href={selectedOrder.screenshot_url}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="block relative group"
-                                    >
-                                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                                        <img
-                                            src={selectedOrder.screenshot_url}
-                                            alt="Payment screenshot"
-                                            className="w-full max-h-96 object-contain rounded-xl border border-white/10"
-                                        />
-                                        <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity rounded-xl flex items-center justify-center">
-                                            <ExternalLink className="text-white" size={32} />
-                                        </div>
-                                    </a>
-                                </div>
+                                            {/* Order Info */}
+                                            <div>
+                                                <h3 className="text-xs font-semibold text-white/50 uppercase tracking-wider mb-3">Order Information</h3>
+                                                <div className="grid grid-cols-2 gap-3">
+                                                    <div className="bg-white/5 rounded-xl border border-white/5 px-4 py-3">
+                                                        <p className="text-white/40 text-[11px] uppercase tracking-wide">Payment Method</p>
+                                                        <p className="text-white text-sm font-medium mt-1">
+                                                            {paymentMethodLabels[selectedOrder.payment_method] || selectedOrder.payment_method}
+                                                        </p>
+                                                    </div>
+                                                    <div className="bg-white/5 rounded-xl border border-white/5 px-4 py-3">
+                                                        <p className="text-white/40 text-[11px] uppercase tracking-wide">Order Date</p>
+                                                        <p className="text-white text-sm font-medium mt-1">
+                                                            {new Date(selectedOrder.created_at).toLocaleDateString("en-US", {
+                                                                month: "short",
+                                                                day: "numeric",
+                                                                year: "numeric",
+                                                            })}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
 
-                                {/* Download Info (if approved) */}
-                                {selectedOrder.status === "approved" && (
-                                    <div className="p-4 bg-green-500/10 border border-green-500/30 rounded-xl mb-6">
-                                        <h3 className="text-green-400 font-medium mb-2">Download Info</h3>
-                                        <p className="text-white/60 text-sm">
-                                            Downloads: {selectedOrder.download_count} / {selectedOrder.max_downloads}
-                                        </p>
-                                        {selectedOrder.download_expires_at && (
-                                            <p className="text-white/60 text-sm">
-                                                Expires: {new Date(selectedOrder.download_expires_at).toLocaleString()}
-                                            </p>
-                                        )}
-                                    </div>
-                                )}
-
-                                {/* Actions */}
-                                {selectedOrder.status === "pending" && (
-                                    <div className="flex gap-4">
-                                        <motion.button
-                                            whileHover={{ scale: 1.02 }}
-                                            whileTap={{ scale: 0.98 }}
-                                            onClick={() => handleAction(selectedOrder.id, "approve")}
-                                            disabled={actionLoading === selectedOrder.id}
-                                            className="flex-1 py-3 bg-green-500 text-white rounded-xl font-bold flex items-center justify-center gap-2"
-                                        >
-                                            {actionLoading === selectedOrder.id ? (
-                                                <Loader2 className="animate-spin" size={20} />
-                                            ) : (
-                                                <CheckCircle size={20} />
+                                            {/* Download Info (if approved) */}
+                                            {selectedOrder.status === "approved" && (
+                                                <div>
+                                                    <h3 className="text-xs font-semibold text-white/50 uppercase tracking-wider mb-3">Download Info</h3>
+                                                    <div className="bg-green-500/10 border border-green-500/20 rounded-xl px-4 py-3 space-y-1">
+                                                        <p className="text-green-400 text-sm">
+                                                            Downloads: <span className="font-medium">{selectedOrder.download_count} / {selectedOrder.max_downloads}</span>
+                                                        </p>
+                                                        {selectedOrder.download_expires_at && (
+                                                            <p className="text-green-400/70 text-sm">
+                                                                Expires: {new Date(selectedOrder.download_expires_at).toLocaleString()}
+                                                            </p>
+                                                        )}
+                                                    </div>
+                                                </div>
                                             )}
-                                            Approve & Send Email
-                                        </motion.button>
-                                        <motion.button
-                                            whileHover={{ scale: 1.02 }}
-                                            whileTap={{ scale: 0.98 }}
-                                            onClick={() => handleAction(selectedOrder.id, "reject")}
-                                            disabled={actionLoading === selectedOrder.id}
-                                            className="flex-1 py-3 bg-red-500/20 text-red-400 rounded-xl font-bold flex items-center justify-center gap-2"
-                                        >
-                                            <XCircle size={20} />
-                                            Reject
-                                        </motion.button>
-                                    </div>
-                                )}
 
-                                <button
-                                    onClick={() => setSelectedOrder(null)}
-                                    className="w-full mt-4 py-3 bg-white/5 text-white/60 rounded-xl font-medium hover:bg-white/10 transition-colors"
-                                >
-                                    Close
-                                </button>
+                                            {/* Actions */}
+                                            {selectedOrder.status === "pending" && (
+                                                <div className="flex gap-3 pt-1">
+                                                    <motion.button
+                                                        whileHover={{ scale: 1.02 }}
+                                                        whileTap={{ scale: 0.98 }}
+                                                        onClick={() => handleAction(selectedOrder.id, "approve")}
+                                                        disabled={actionLoading === selectedOrder.id}
+                                                        className="flex-1 py-2.5 bg-green-500 hover:bg-green-600 text-white rounded-xl text-sm font-bold flex items-center justify-center gap-2 transition-colors"
+                                                    >
+                                                        {actionLoading === selectedOrder.id ? (
+                                                            <Loader2 className="animate-spin" size={16} />
+                                                        ) : (
+                                                            <CheckCircle size={16} />
+                                                        )}
+                                                        Approve & Send Email
+                                                    </motion.button>
+                                                    <motion.button
+                                                        whileHover={{ scale: 1.02 }}
+                                                        whileTap={{ scale: 0.98 }}
+                                                        onClick={() => handleAction(selectedOrder.id, "reject")}
+                                                        disabled={actionLoading === selectedOrder.id}
+                                                        className="flex-1 py-2.5 bg-red-500/15 hover:bg-red-500/25 text-red-400 rounded-xl text-sm font-bold flex items-center justify-center gap-2 border border-red-500/20 transition-colors"
+                                                    >
+                                                        <XCircle size={16} />
+                                                        Reject
+                                                    </motion.button>
+                                                </div>
+                                            )}
+                                        </div>
+
+                                        {/* Right Column — Payment Screenshot */}
+                                        <div className="mt-5 md:mt-0">
+                                            <h3 className="text-xs font-semibold text-white/50 uppercase tracking-wider mb-3">Payment Screenshot</h3>
+                                            <a
+                                                href={selectedOrder.screenshot_url}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="block relative group rounded-xl overflow-hidden border border-white/10 bg-black/20"
+                                            >
+                                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                                <img
+                                                    src={selectedOrder.screenshot_url}
+                                                    alt="Payment screenshot"
+                                                    className="w-full max-h-[500px] object-contain"
+                                                />
+                                                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                                                    <ExternalLink className="text-white" size={22} />
+                                                    <span className="text-white text-sm font-medium">View Full Image</span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
                             </motion.div>
                         </motion.div>
                     )}
