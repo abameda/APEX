@@ -23,7 +23,7 @@ export async function sendDownloadEmail({
   const { data, error } = await getResend().emails.send({
     from: 'APEX Theme <onboarding@resend.dev>', // Using Resend test domain for reliable delivery
     replyTo: 'abdelhmeed.mohsen@gmail.com', // Replies go to your Gmail
-    to: [to],
+    to: ['abdelhmeed.mohsen@gmail.com'], // TODO: Change back to [to] after verifying domain
     subject: '🎉 Your APEX Theme is Ready!',
     html: `
 <!DOCTYPE html>
