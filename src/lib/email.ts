@@ -61,7 +61,7 @@ export async function sendDownloadEmail({
         <h3 style="color: #D4AF37; margin: 0 0 10px 0; font-size: 14px; text-transform: uppercase;">⚠️ Important</h3>
         <ul style="color: #ccc; margin: 0; padding-left: 20px; line-height: 1.8;">
           <li>Download link expires: <strong style="color: #fff;">${formattedExpiry}</strong></li>
-          <li>Maximum downloads allowed: <strong style="color: #fff;">3</strong></li>
+
           <li>Save the file to a secure location after download</li>
         </ul>
       </div>
