@@ -87,7 +87,7 @@ export async function sendDownloadEmail({
     
     <!-- Footer -->
     <div style="text-align: center; color: #444; font-size: 12px;">
-      <p style="margin: 0;">© 2024 APEX Theme. All rights reserved.</p>
+      <p style="margin: 0;">© ${new Date().getFullYear()} APEX Theme. All rights reserved.</p>
       <p style="margin: 10px 0 0 0;">This is a licensed copy for your personal/business use only.</p>
     </div>
   </div>
